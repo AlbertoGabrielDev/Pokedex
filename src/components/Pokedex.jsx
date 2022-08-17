@@ -5,8 +5,6 @@ import Pokemons from './Pokemons';
 import Buscar from "./Buscar";
 
 
-
-
 const Pokedex = () => {
   const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/")
   const [pokemon, setPokemon] = useState([])

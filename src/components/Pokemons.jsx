@@ -1,7 +1,4 @@
-
-
 import './Pokedex.css';
-
 
 function Pokemons({ dados }) {
 
