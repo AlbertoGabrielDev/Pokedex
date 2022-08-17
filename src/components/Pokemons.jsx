@@ -1,22 +1,21 @@
-import React,{useState} from "react";
+
+
 import './Pokedex.css';
 
-import Habilidades from "./Habilidades";
 
-
-function Pokemons({ dados, info }) {
+function Pokemons({ dados }) {
 
   return (
     <>
-      <div className="cards">
+      <div className="cards" >
         {
-          dados.map((e,index) => {
-            
+          dados.map((e) => {
+
             return (
               <>
-                <div className="card">
+                {/* <input type="checkbox" for="bloco" checked={() => info(e)}/> */}
+                <div className="card" key={e.id}  >
                   <div className="front">
-                    <div key={1}></div>
                     <p className="atributos3"> <strong>{e.types[0].type.name}</strong> </p>
                     <p className="atributos">Nome: {e.name}</p>
                     <p className="atributos">Peso: {e.weight} </p>
@@ -26,30 +25,57 @@ function Pokemons({ dados, info }) {
                     <img className="imagem" src={e.sprites.front_default} alt={e.name} ></img>
                   </div>
                   <div className="back">
-                  <div key={1}></div>
-                    {/* <button className="" onClick={() => info(e)}>Habilidades</button> */}
-                    
-                   
-                   
-                    {/* <p>{e.abilities[0].ability.name}</p> */}
-                    
-                    
-                  </div>
+                    <div className="grid">
 
+                      {/* array.forEach(element of e) */}
+                      {
+
+                        e.abilities.map((poke, index) => {
+                          return (
+                            <>
+                              <div className="mini-card" key={index}>
+                                {/* <p className="">habilidade: {index + 1}</p> */}
+                                <strong className="habi">Habilidade: {poke.ability.name}</strong>
+                              </div>
+
+                            </>
+                          )
+                          
+                        })
+                      }
+                      <img className='imagem' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${e.id}.svg`} alt={e.id} />
+                      {
+                        <>
+                          {
+                            e.stats.map((poke, index) => {
+                              // console.log(index, " STATUS: ", poke)
+                              return (
+                                <>
+                                  <div className='mini-card2'>
+                                    <p className="habi2" key={index}>{poke.stat.name}:{poke.base_stat}</p>
+
+                                  </div>
+
+                                </>
+                              )
+                            })
+                          }
+                        </>
+                      }
+
+                    </div>
+                  </div>
                 </div>
+
+
               </>
             )
           })
-            
-            
+
         }
-        
-
       </div>
-
     </>
 
-    //criar uma div, e por dentro da div a tag P
 
   )
 }

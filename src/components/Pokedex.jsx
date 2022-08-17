@@ -3,7 +3,7 @@ import axios from "axios";
 import './Pokedex.css';
 import Pokemons from './Pokemons';
 import Buscar from "./Buscar";
-import Habilidades from "./Habilidades";
+
 
 
 
@@ -28,6 +28,12 @@ const Pokedex = () => {
 
   }
 
+  const infoPokemon = (dados) => {
+    // console.log("Dados:",dados)
+    setpokemonHabi(dados)
+    return pokemonHabi;
+  }
+
   const getPokemon = async (res) => {
     res.map(async (item) => {
       const result = await axios.get(item.url)
@@ -36,30 +42,20 @@ const Pokedex = () => {
         e.sort((a, b) => a.id > b.id ? 1 : -1)
         return e;
       })
-      // console.log("Pokemon", pokemon)
+      //  console.log("Pokemon", result.data.abilities)
     })
   }
-
-
-
 
   return (
     <>
       <Buscar />
+
       <Pokemons
         dados={pokemon}
-        // habi={pokemon}
-        info={poke => setpokemonHabi(poke)}
+        info={poke => infoPokemon(poke)}
       />
 
-      <div className="cards">
-        <div className="card">
-          <div className="back">
-            <Habilidades habi={pokemonHabi}/> 
-
-          </div>
-        </div>
-      </div>
+     
 
       <div className="botao">
         {
